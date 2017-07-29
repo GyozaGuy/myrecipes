@@ -35,6 +35,20 @@ $navbar-default-bg: #073b15;
   border: 1px solid #000;
 }
 
+.description {
+  margin-top: 0;
+}
+
+.well {
+  a {
+    color: $navbar-default-bg;
+  }
+}
+
+.chef-info {
+  margin-top: 10px;
+}
+
 .footer {
   bottom: 0;
   position: absolute;
