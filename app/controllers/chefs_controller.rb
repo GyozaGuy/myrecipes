@@ -1,5 +1,7 @@
 # ChefsController
 class ChefsController < ApplicationController
+  before_action :set_chef, only: %i[show]
+
   def new
     @chef = Chef.new
   end
@@ -14,10 +16,13 @@ class ChefsController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
   private
+
+  def set_chef
+    @chef = Chef.find(params[:id])
+  end
 
   def chef_params
     params.require(:chef).permit(:chefname, :email, :password, :password_confirmation)
