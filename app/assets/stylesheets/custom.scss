@@ -32,7 +32,6 @@ $navbar-default-bg: #073b15;
 
 .btn-xlarge {
   background-color: $navbar-default-bg;
-  border: 1px solid #000;
 }
 
 .description {
@@ -52,4 +51,10 @@ $navbar-default-bg: #073b15;
 .footer {
   bottom: 0;
   position: absolute;
+}
+
+.colormatch {
+  a {
+    color: $navbar-default-bg;
+  }
 }
