@@ -66,3 +66,14 @@ $navbar-default-bg: #073b15;
     color: #fff;
   }
 }
+
+.listing {
+  list-style: none;
+  padding-left: 0;
+
+  .chef-title {
+    color: $navbar-default-bg;
+    font-weight: bold;
+    font-size: 1.25em;
+  }
+}
