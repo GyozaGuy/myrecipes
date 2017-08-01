@@ -10,4 +10,5 @@ class Chef < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 8 }, allow_nil: true
   default_scope -> { order(chefname: :asc) }
+  has_many :comments, dependent: :destroy
 end
