@@ -16,7 +16,7 @@
         </p>
       <% end %>
       <p>
-        <span class="quiet"><small>Created <%= time_ago_in_words(recipe.created_at) %> ago by <%= recipe.chef.chefname %></small></span>
+        <span class="quiet"><small>Created <%= time_ago_in_words(recipe.created_at) %> ago by <%= recipe.chef.chefname %> | <%= pluralize(recipe.comments.count, 'Comment') %></small></span>
       </p>
       <% if logged_in? && (current_chef == recipe.chef || current_chef.admin?) %>
         <div class="recipe-actions">
