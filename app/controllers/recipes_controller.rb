@@ -1,8 +1,9 @@
 # RecipesController
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: %i[show edit update destroy]
-  before_action :require_user, except: %i[index show]
+  before_action :set_recipe, only: %i[show edit update destroy like]
+  before_action :require_user, except: %i[index show like]
   before_action :require_same_user, only: %i[edit update destroy]
+  before_action :require_user_like, only: %i[like]
 
   def index
     @recipes = Recipe.paginate(page: params[:page], per_page: 5)
@@ -45,6 +46,16 @@ class RecipesController < ApplicationController
     redirect_to recipes_path
   end
 
+  def like
+    like = Like.create(like: params[:like], chef: current_chef, recipe: @recipe)
+    if like.valid?
+      flash[:success] = 'You liked this recipe!'
+    else
+      flash[:danger] = 'You can only like or dislike a recipe once'
+    end
+    redirect_back fallback_location: root_path
+  end
+
   private
 
   def set_recipe
@@ -59,5 +70,11 @@ class RecipesController < ApplicationController
     return unless current_chef != @recipe.chef && !current_chef.admin?
     flash[:danger] = 'You can only edit or delete your own recipes'
     redirect_to recipes_path
+  end
+
+  def require_user_like
+    return if logged_in?
+    flash[:danger] = 'You must be logged in to perform that action'
+    redirect_back fallback_location: root_path
   end
 end
