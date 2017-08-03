@@ -49,7 +49,7 @@ class RecipesController < ApplicationController
   def like
     like = Like.create(like: params[:like], chef: current_chef, recipe: @recipe)
     if like.valid?
-      flash[:success] = 'You liked this recipe!'
+      flash[:success] = 'Your opinion was saved successfully!'
     else
       flash[:danger] = 'You can only like or dislike a recipe once'
     end
