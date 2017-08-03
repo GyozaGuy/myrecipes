@@ -29,7 +29,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
     sign_in_as(@chef, 'password')
     get recipe_path(@recipe1)
     assert_template 'recipes/show'
-    assert_match @recipe1.name.capitalize, response.body
+    assert_match @recipe1.name, response.body
     assert_match @recipe1.description, response.body
     assert_match @chef.chefname, response.body
     assert_select 'a[href=?]', edit_recipe_path(@recipe1), text: 'Edit this recipe'
@@ -47,7 +47,7 @@ class RecipesTest < ActionDispatch::IntegrationTest
       post recipes_path, params: { recipe: { name: recipe_name, description: recipe_description } }
     end
     follow_redirect!
-    assert_match recipe_name.capitalize, response.body
+    assert_match recipe_name, response.body
     assert_match recipe_description, response.body
   end
 
